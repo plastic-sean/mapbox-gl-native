@@ -6,7 +6,7 @@ dependencies {
     lintChecks project(":MapboxGLAndroidSDKLint")
     api dependenciesList.mapboxAndroidTelemetry
     api dependenciesList.mapboxJavaGeoJSON
-    api dependenciesList.mapboxAndroidGestures
+    api project(":MapboxAndroidGestures")
     implementation dependenciesList.mapboxJavaTurf
     implementation dependenciesList.supportAppcompatV7
     implementation dependenciesList.supportAnnotations
@@ -32,6 +32,8 @@ android {
         buildConfigField "String", "MAPBOX_VERSION_STRING", String.format("\"Mapbox/%s\"", project.VERSION_NAME)
         buildConfigField "String", "MAPBOX_EVENTS_USER_AGENT", String.format("\"mapbox-maps-android/%s\"", project.VERSION_NAME)
     }
+    
+    updateVendorModules()
 
     defaultPublishConfig project.hasProperty("mapbox.buildtype") ? project.getProperty("mapbox.buildtype") : "debug"
 
@@ -149,6 +151,11 @@ def static getGitRevision() {
     def proc = cmd.execute()
     def ref = proc.text.trim()
     return ref
+}
+
+def static updateVendorModules() {
+    def cmd = "git submodule update --init --recursive vendor/mapbox-gestures-android/"
+    cmd.execute()
 }
 
 configurations {

@@ -70,12 +70,11 @@ class LocationComponentCompassEngine implements CompassEngine, SensorEventListen
     compassSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
     if (compassSensor == null) {
       if (isGyroscopeAvailable()) {
-        Logger.d(TAG, "Rotation vector sensor not supported on device, "
-                + "falling back to orientation.");
+        Logger.d(TAG, "Rotation vector sensor not supported on device, falling back to orientation.");
         compassSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
       } else {
         Logger.d(TAG, "Rotation vector sensor not supported on device, "
-                        + "falling back to accelerometer and magnetic field.");
+          + "falling back to accelerometer and magnetic field.");
         gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         magneticFieldSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
       }
