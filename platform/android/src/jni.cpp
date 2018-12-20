@@ -1,6 +1,7 @@
 #include "jni.hpp"
 
 #include <mbgl/util/logging.hpp>
+#include <src/math/math.hpp>
 
 #include "annotation/marker.hpp"
 #include "annotation/polygon.hpp"
@@ -51,6 +52,7 @@
 #include "text/collator_jni.hpp"
 #include "text/local_glyph_rasterizer_jni.hpp"
 #include "logger.hpp"
+#include "math/math.hpp"
 
 namespace mbgl {
 namespace android {
@@ -114,6 +116,7 @@ void registerNatives(JavaVM *vm) {
     // Basic types
     java::registerNatives(env);
     java::util::registerNative(env);
+    java::math::registerNative(env);
     PointF::registerNative(env);
     RectF::registerNative(env);
 
