@@ -96,6 +96,9 @@ protected:
     // Code specific to RenderTiles sorting / filtering
     virtual RenderTiles filterRenderTiles(RenderTiles) const;
     virtual void sortRenderTiles(const TransformState&);
+    // For some layers, we want Bucket to keep up-to-date paint properties data, so that this bucket can
+    // be reused while the new bucket is on the way.
+    virtual void updateBucketPaintProperties(Bucket*) const;
     using FilterFunctionPtr = bool (*)(RenderTile&);
     RenderTiles filterRenderTiles(RenderTiles, FilterFunctionPtr) const;
 
